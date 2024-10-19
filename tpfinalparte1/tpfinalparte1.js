@@ -7,7 +7,7 @@ let desarrollo;
 
 function preload() {
 
-  for (let i=0; i< 12; i++) {
+  for (let i=0; i<14; i++) {
     imagen [i] = loadImage("data/casa" + i + ".jpg");
   }
   for (let i=0; i< textos.length; i++) {
@@ -20,7 +20,7 @@ function setup() {
   textSize(25);
   textAlign(CENTER, CENTER);
 
-  for (let i=0; i<12; i++) {
+  for (let i=0; i<14; i++) {
     imagen[i].resize (640, 480);
   }
 
@@ -55,24 +55,29 @@ function draw() {
     botond (540, 420, 150, 60);
   } else if (desarrollo === "septima") {
     cambiaimagen(imagen[7], 0, 0, 480, 480);
-    botond(100, 420, 150, 60);
+    botond(100, 420, 150, 60);               // ACA LE PUSE UN BOTON PARA VOLVER. NO SÉ SI QUERES QUE LO DEJE O LO SACAMOS
+    botond (540, 420, 150, 60);
   } else if (desarrollo === "octava") {
     cambiaimagen(imagen[8], 0, 0, 480, 480);
     botond(100, 420, 150, 60);
     botond (540, 420, 150, 60);
   } else if (desarrollo === "novena") {
     cambiaimagen(imagen[9], 0, 0, 480, 480);
-    botond(540, 420, 150, 60);
-  } else if (desarrollo === "decima") {
-    cambiaimagen(imagen[10], 0, 0, 480, 480);
     botond(100, 420, 150, 60);
+    botond(540, 420, 150, 60);
+  } else if (desarrollo === "decima") {    // final
+    cambiaimagen(imagen[10], 0, 0, 480, 480);
+    botond (320, 420, 150, 60);
   } else if (desarrollo === "undecima") {
     cambiaimagen(imagen[11], 0, 0, 480, 480);
     botond(100, 420, 150, 60);
     botond (540, 420, 150, 60);
-  } else if (desarrollo === "duodecima") {
+  } else if (desarrollo === "duodecima") {  //final
     cambiaimagen(imagen[12], 0, 0, 480, 480);
-    botond (540, 420, 150, 60);
+    botond (320, 420, 150, 60);
+  } else if (desarrollo === "decimotercera") { //imagen final alt
+    cambiaimagen(imagen[13], 0, 0, 480, 480);
+    botond (320, 420, 150, 60);
   }
 
   fill(255);
@@ -81,49 +86,49 @@ function draw() {
 
 
 function  mousePressed() {
-  if (desarrollo === "comienzo") {
-    if (mousesobre(320, 420, 150, 60)) {
-      desarrollo = "primera";
-      orden = (orden + 1) % textos.length;
-    }
-  } else if (desarrollo === "primera") {
-    if (mousesobre (320, 420, 150, 60)) {
-      desarrollo = "segunda";
-      orden = (orden + 1) % textos.length;
-    }
-  } else if (desarrollo === "segunda") {
-    if (mousesobre (0, 420, 150, 60)) {
-      desarrollo = "tercera";
-      orden = (orden + 1) % textos.length;
-    } else if (mousesobre (540, 420, 150, 60)) {
-      desarrollo = "cuarta";
-      orden = (orden + 1) % textos.length;
-    }
-  } else if (desarrollo === "tercera") {
-    if (mousesobre (540, 420, 150, 60)) {
-      desarrollo = "sexta";
-      orden = (orden + 1) % textos.length;
-    }
-  } else if (desarrollo === "cuarta") {
-    if (mousesobre (540, 420, 150, 60)) {
-      desarrollo = "quinta";
-      orden = (orden + 1) % textos.length;
-    }
-  } else if (desarrollo === "sexta") {
-    if (mousesobre (540, 420, 150, 60)) {
-      desarrollo = "octava";
-      orden = (orden + 1) % textos.length;
-    }
-  } else if (desarrollo === "octava") {
-    if (mousesobre (540, 420, 150, 60)) {
-      desarrollo = "novena";
-      orden = (orden + 1) % textos.length;
-    } else if (mousesobre (0, 420, 150, 60)) {
-      desarrollo = "decima";
-      orden = (orden + 1) % textos.length;
-  } 
-  else if (desarrollo === 
+  if (botoniniciovolver("comienzo", "primera")) {
+    orden = (orden + 1) % textos.length;
+  } else if (botoniniciovolver("primera", "segunda")) {
+    orden = (orden + 1) % textos.length;
+  } else if (botonizquierda("segunda", "tercera")) { //continuar
+    orden = (orden + 1) % textos.length;
+  } else if (botonderecha("segunda", "cuarta")) {
+    orden = (orden + 1) % textos.length;
+  } else if (botonderecha("tercera", "sexta")) {
+    orden = (orden + 1) % textos.length;
+  } else if (botonderecha("cuarta", "quinta")) {
+    orden = (orden + 1) % textos.length;
+  } else if (botonderecha("sexta", "septima")) {
+    orden = (orden + 1) % textos.length;
+  } else if (botonderecha("quinta", "octava")) {
+    orden = (orden + 1) % textos.length;
+  } else if (botonizquierda("octava", "comienzo")) {
+    orden = (orden + 1) % textos.length;
+  } else if (botonderecha("octava", "decima")) {  //maletas
+    orden = (orden + 1) % textos.length;
+  } else if (botonizquierda( "septima", "octava")) {
+    orden = (orden + 1) % textos.length;
+  } else if (botonderecha( "septima", "novena")) {
+    orden = (orden + 1) % textos.length;
+  } else if (botoniniciovolver("decima", "comienzo")) { //FINAL 1
+    orden = (orden + 1) % textos.length;  //aca tengo dudas del texto
+  } else if (botonizquierda("novena", "octava")) {
+    orden = (orden + 1) % textos.length;
+  } else if (botonderecha("novena", "undecima")) {
+    orden = (orden + 1) % textos.length;
+  } else if (botonizquierda("undecima", "duodecima")) {
+    orden = (orden + 1) % textos.length;
+  } else if (botonderecha("undecima", "decimotercera")) {
+    orden = (orden + 1) % textos.length;
+  } else if (botoniniciovolver("duodecima", "comienzo")) {
+    orden = (orden + 1) % textos.length;
+  } else if (botoniniciovolver("decimotercera", "comienzo")) {
+  orden = (orden + 1) % textos.length;
 }
+}
+
+
+
 function botond(px, py, anch, alt) {
   if (mousesobre(px, py, anch, alt)) {
     fill (81, 87, 242);
@@ -131,6 +136,31 @@ function botond(px, py, anch, alt) {
     fill (81, 255, 242);
   }
   ellipse (px, py, anch, alt);
+}
+
+function botoniniciovolver (x, y) {
+  if (desarrollo === x && mousesobre (320, 420, 150, 60)) {
+    desarrollo = y;
+    return true;
+  }
+  return false;
+}
+
+
+function botonizquierda (x, y) {
+  if (desarrollo === x && mousesobre (100, 420, 150, 60)) {
+    desarrollo = y;
+    return true;
+  }
+  return false;
+}
+
+function botonderecha (x, y) {
+  if (desarrollo === x && mousesobre(540, 420, 150, 60)) {
+    desarrollo = y;
+    return true;
+  }
+  return false;
 }
 
 function mousesobre(x, y, anch, alt) {
