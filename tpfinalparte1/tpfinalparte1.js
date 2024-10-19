@@ -1,8 +1,8 @@
+//https://youtu.be/yJY3qkP3j0k
 //comisión 1 Brisa Gadea y Anahí Ganem
 let imagen = [];
 let orden;
 let textos= [];
-let river= [];
 let desarrollo;
 let sonidoFondo;
 
