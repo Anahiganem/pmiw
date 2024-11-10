@@ -19,7 +19,7 @@ function setup() {
   textSize(15);
   textAlign(CENTER, CENTER);
   textos = loadStrings("data/textos.txt"); //archivo d texto
-  
+
   for (let i=0; i<14; i++) {
     imagen[i].resize (640, 480); // dibuja las imageness
   }
@@ -30,7 +30,7 @@ function setup() {
 function draw() {
 
   background(0);
-   let valorVolumen = map(mouseX, 0, width, 0.1, 1);
+  let valorVolumen = map(mouseX, 0, width, 0.1, 1);
   sonidoFondo.amp(valorVolumen);
 
   if (desarrollo === "comienzo") {
@@ -66,7 +66,7 @@ function draw() {
   } else if (desarrollo === "cuarta") {
     cambiaimagen(imagen[4], 0, 0, 480, 480);
     botond (540, 420, 150, 60);
-    ordenTexto(4); 
+    ordenTexto(4);
     fill(255);
     text("siguiente", 540, 420);
     textSize(20);
@@ -88,7 +88,7 @@ function draw() {
     cambiaimagen(imagen[7], 0, 0, 480, 480);
     botond(100, 420, 150, 60);               // ACA LE PUSE UN BOTON PARA VOLVER. NO SÉ SI QUERES QUE LO DEJE O LO SACAMOS
     botond (540, 420, 150, 60);
-    ordenTexto(10); 
+    ordenTexto(10);
     fill(255);
     text("Abandonar", 100, 420); //camino de la cocina a los finales
     text("Seguir", 540, 420);
@@ -97,7 +97,7 @@ function draw() {
     cambiaimagen(imagen[8], 0, 0, 480, 480);
     botond(100, 420, 150, 60);
     botond (540, 420, 150, 60);
-    ordenTexto(9); 
+    ordenTexto(9);
     fill(255);
     text("Inicio", 100, 420);
     text("Irse", 540, 420);
@@ -106,7 +106,7 @@ function draw() {
     cambiaimagen(imagen[9], 0, 0, 480, 480);
     botond(100, 420, 150, 60);
     botond(540, 420, 150, 60);
-    ordenTexto(6); 
+    ordenTexto(6);
     fill(255);
     text("abandonar", 100, 420);
     text("seguir", 540, 420);
@@ -114,7 +114,7 @@ function draw() {
   } else if (desarrollo === "decima") {    // final
     cambiaimagen(imagen[10], 0, 0, 480, 480);
     botond (320, 420, 150, 60);
-    ordenTexto(8);// final UNO  
+    ordenTexto(8);// final UNO
     fill(255);
     text("Inicio", 320, 420);
     textSize(20);
@@ -122,7 +122,7 @@ function draw() {
     cambiaimagen(imagen[11], 0, 0, 480, 480);
     botond(100, 420, 150, 60);
     botond (540, 420, 150, 60);
-    ordenTexto(7); 
+    ordenTexto(7);
     fill(255);
     text("Confrontar", 100, 420);
     text("Investigar", 540, 420);
@@ -130,84 +130,79 @@ function draw() {
   } else if (desarrollo === "duodecima") {  //final
     cambiaimagen(imagen[12], 0, 0, 480, 480);
     botond (320, 420, 150, 60);
-    ordenTexto(11); 
+    ordenTexto(11);
     fill(255);
     text("Inicio", 320, 420);
     textSize(20);
   } else if (desarrollo === "decimotercera") { //imagen final alt
     cambiaimagen(imagen[13], 0, 0, 480, 480);
     botond (320, 420, 150, 60);
-    ordenTexto(12); 
+    ordenTexto(12);
     fill(255);
     text("Inicio", 320, 420);
     textSize(20);
   }
-
 }
 
 function ordenTexto (linea) {
   fill(255); // color del texto
-  if (orden < textos.length) { 
+  if (orden < textos.length) {
     text(textos [linea], width/2, height/2); //centrar
   }
 }
 
 function  mousePressed() {
-  if (botoniniciovolver("comienzo", "primera")) {
+  if (botonp("comienzo", "primera", 320)) {
+  } else if (botonp("primera", "segunda", 320)) {
     orden = (orden + 1) % textos.length;
-  } else if (botoniniciovolver("primera", "segunda")) {
+  } else if (botonp("segunda", "tercera", 100)) { //continuar
     orden = (orden + 1) % textos.length;
-  } else if (botonizquierda("segunda", "tercera")) { //continuar
+  } else if (botonp("segunda", "cuarta", 540)) {
     orden = (orden + 1) % textos.length;
-  } else if (botonderecha("segunda", "cuarta")) {
+  } else if (botonp("tercera", "sexta", 540)) {
     orden = (orden + 1) % textos.length;
-  } else if (botonderecha("tercera", "sexta")) {
+  } else if (botonp("cuarta", "quinta", 540)) {
     orden = (orden + 1) % textos.length;
-  } else if (botonderecha("cuarta", "quinta")) {
+  } else if (botonp("sexta", "septima", 540)) {
     orden = (orden + 1) % textos.length;
-  } else if (botonderecha("sexta", "septima")) {
+  } else if (botonp("quinta", "octava", 540)) {
     orden = (orden + 1) % textos.length;
-  } else if (botonderecha("quinta", "octava")) {
+  } else if (botonp("octava", "comienzo", 100)) {
     orden = (orden + 1) % textos.length;
-  } else if (botonizquierda("octava", "comienzo")) {
+  } else if (botonp("octava", "decima", 540)) {  //maletas
     orden = (orden + 1) % textos.length;
-  } else if (botonderecha("octava", "decima")) {  //maletas
+  } else if (botonp( "septima", "octava", 100)) {
     orden = (orden + 1) % textos.length;
-  } else if (botonizquierda( "septima", "octava")) {
+  } else if (botonp( "septima", "novena",540)) {
     orden = (orden + 1) % textos.length;
-  } else if (botonderecha( "septima", "novena")) {
-    orden = (orden + 1) % textos.length;
-  } else if (botoniniciovolver("decima", "comienzo")) { //FINAL 1
+  } else if (botonp("decima", "comienzo", 320)) { //FINAL 1
     orden = (orden + 1) % textos.length;  //aca tengo dudas del texto
-  } else if (botonizquierda("novena", "octava")) {
+  } else if (botonp("novena", "octava", 100)) {
     orden = (orden + 1) % textos.length;
-  } else if (botonderecha("novena", "undecima")) {
+  } else if (botonp("novena", "undecima", 540)) {
     orden = (orden + 1) % textos.length;
-  } else if (botonizquierda("undecima", "duodecima")) {
+  } else if (botonp("undecima", "duodecima", 100)) {
     orden = (orden + 1) % textos.length;
-  } else if (botonderecha("undecima", "decimotercera")) {
+  } else if (botonp("undecima", "decimotercera", 540)) {
     orden = (orden + 1) % textos.length;
-  } else if (botoniniciovolver("duodecima", "comienzo")) {
+  } else if (botonp("duodecima", "comienzo", 320)) {
     orden = (orden + 1) % textos.length;
-  } else if (botoniniciovolver("decimotercera", "comienzo")) {
-  orden = (orden + 1) % textos.length;
-}
+  } else if (botonp("decimotercera", "comienzo", 320)) {
+    orden = (orden + 1) % textos.length;
+  }
 
   if (bot(50, 50, 100, 50)) {
-   
+
     tic.play();
   }
-  if (!sonidoFondo.isPlaying()) { 
-    sonidoFondo.loop(true); 
+  if (!sonidoFondo.isPlaying()) {
+    sonidoFondo.loop(true);
   }
-  // pongo loop para que se repita mientras pongas comenzar 
+  // pongo loop para que se repita mientras pongas comenzar
 }
 function bot(x, y, an, al) {
   return mouseX>x && mouseX <x+an && mouseY>y && mouseY<y+al;
 }
-
-
-
 
 function botond(px, py, anch, alt) {
   if (mousesobre(px, py, anch, alt)) {
@@ -218,8 +213,8 @@ function botond(px, py, anch, alt) {
   ellipse (px, py, anch, alt);
 }
 
-function botoniniciovolver (x, y) {
-  if (desarrollo === x && mousesobre (320, 420, 150, 60)) {
+function botonp (x, y, p) {
+  if (desarrollo === x && mousesobre (p, 420, 150, 60)) {
     desarrollo = y;
     return true;
   }
@@ -227,24 +222,9 @@ function botoniniciovolver (x, y) {
 }
 
 
-function botonizquierda (x, y) {
-  if (desarrollo === x && mousesobre (100, 420, 150, 60)) {
-    desarrollo = y;
-    return true;
-  }
-  return false;
-}
-
-function botonderecha (x, y) {
-  if (desarrollo === x && mousesobre(540, 420, 150, 60)) {
-    desarrollo = y;
-    return true;
-  }
-  return false;
-}
-
-function mousesobre(x, y, anch, alt) {
-  return mouseX > x && mouseX < x+anch && mouseY > y && mouseY < y+alt;
+function mousesobre(x, y, radio) {
+  let d = dist(mouseX, mouseY, x, y);
+  return d < radio / 2;
 }
 
 function cambiaimagen (img, x, y, anch, alt) {
