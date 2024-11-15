@@ -4,46 +4,60 @@ class Juego {
     this.estado = 0;
     this.crearPersonaje();
     this.crearObstaculos();
-
+    this.textos = [];
+    this.textos = loadStrings("data/textos.txt");
     //this.linternasRecolectadas = new linternasRecolectadas();
+    
   }
-
+ 
   dibujar() {
     if (this.estado === 0) {
       // Pantalla de inicio
+      fondo.dibujar();
       textAlign(CENTER, CENTER);
       textSize(32);
-      fill(0);
-      text("Nombre del Juego", width / 2, height / 2 - 40);
-
-      // Botón "Comenzar"
-      fill(200, 0, 0);
-      rect(width / 2 - 50, height / 2, 100, 40);
+      fill(255);
+      text(this.textos[0], width / 2, height / 2 - 100);
+      fill(200, 0, 0);// Botón "instrucciones
+      this.boton (width / 2 - 70, height /2);
       fill(255);
       textSize(20);
-      text("Comenzar", width / 2, height / 2 + 20);
+      text(this.textos[1], width / 2, height / 2 + 20);
     } else if (this.estado === 1) {
-      // Pantalla del juego
-  
+      // instrucciones y reglas
+      fondo.dibujar();
+      textSize(16);
+      fill(255);
+      let y = height / 2 - 130;
+      for (let i = 2; i < this.textos.length -+ 6; i++) {
+        text(this.textos[i], width / 2, y);
+        y += 18; // interlineado
+      }
+      fill(200, 0, 0);
+      fill(255);
+      textSize(20);
+      text(this.textos[14], width / 2, height / 2 + 120);
+      // Pantalla del jueg
+    } else if (this.estado === 2) {
       this.personaje.dibujar();
 
       for (let i=0; i< this.cantidadObstaculos; i++) {
         this.obstaculos[i].dibujar();
       }
-      // Aquí puedes verificar si el jugador gana o pierde
-      if (objJuego.personajeGana()) {
-        this.estado = 2;
-      } else if (objJuego.personajePierde()) {
+      // si el jugador gana o pierde
+      if (this.personajeGana()) {
         this.estado = 3;
+      } else if (this.personajePierde()) {
+        this.estado = 4;
       }
-    } else if (this.estado === 2) {
-      // Pantalla de victoria
+    } else if (this.estado === 3) {
+      // Pantalla gana
       textAlign(CENTER, CENTER);
       textSize(32);
       fill(0, 255, 0);
       text("¡Ganaste!", width / 2, height / 2);
-    } else if (this.estado === 3) {
-      // Pantalla de derrota
+    } else if (this.estado === 4) {
+      // Pantalla pierde
       textAlign(CENTER, CENTER);
       textSize(32);
       fill(255, 0, 0);
@@ -51,13 +65,23 @@ class Juego {
     }
   }
 
-
+  boton(x, y) {
+    rect (x, y, 140, 40)
+  }
+  comenzarjuego(tecla) {
+    if (tecla == ENTER && this.estado == 1) {
+      this.estado = 2;
+    }
+  }
   mouseclic() {
     if (this.estado === 0) {
-      // Detectar clic en el botón "Comenzar" en la pantalla de inicio
-      if (mouseX > width / 2 - 50 && mouseX < width / 2 + 50 &&
-        mouseY > height / 2 && mouseY < height / 2 + 40) {
+      let x = width / 2 - 70;
+      let y = height / 2;
+      let an = 140;
+      let al = 40;
+      if (mouseX > x && mouseX < x+an && mouseY > y && mouseY < y+al) {
         this.estado = 1; // Cambia al estado de juego
+        fondo.cambiaimagen();
       }
     }
   }
@@ -80,10 +104,17 @@ class Juego {
   }
 
   personajeGana() {
-     return false;
+    return false;
   }
 
   personajePierde() {
-     return false;
+    return false;
+  }
+}
+function ordenTexto (linea) {
+  fill(255); // color del texto
+  if (orden < textos.length)
+  {
+    text(textos [linea], width/2, height/2); //centrar
   }
 }
