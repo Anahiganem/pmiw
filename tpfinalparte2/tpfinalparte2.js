@@ -1,6 +1,6 @@
 let objJuego;
 let fondo; 
-let sonidoFondo
+let sonidoFondo;
 
 function preload() {
    fondo = new ImagenesFondo();
@@ -25,7 +25,6 @@ function keyPressed(){
 }
 function mousePressed() {
   objJuego.mouseclic();
-  if (!sonidoFondo.isPlaying()) {
-      sonidoFondo.loop();
-  }
+  objJuego.manejosonido();
 }
+
