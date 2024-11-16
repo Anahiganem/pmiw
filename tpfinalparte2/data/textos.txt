@@ -15,12 +15,9 @@ Presioná ENTER para comenzar
 
 
 ¡Ganaste! 
-Realizado por Brisa Gadea y Anahi ganem
-
-Reiniciar
+Juego realizado por Brisa Gadea y Anahi ganem
 
 Perdiste :(  
-Realizado por Brisa Gadea y Anahi ganem
+Juego realizado por Brisa Gadea y Anahi ganem
 
 Reiniciar
-
