@@ -1,42 +1,25 @@
 class Personaje {
-  constructor(posX, posY) {
-    this.posX = posX;
-    this.posY = posY;
-    this.colorper = color(0, 190, 0);
-    this.vidas = 3;
-    //this.linternasRecolectadas = new linternasRecolectadas();
+  constructor(x, y, tamaño) {
+    this.x = x;
+    this.y = y;
+    this.tamaño = tamaño;
+    this.velocidad = 5;
   }
 
-  dibujar() {
-    noStroke();
-    fill(this.colorper);
-    ellipse(this.posX, this.posY, 45, 45); //cabeza
-    rect(this.posX-10, this.posY, 20, 50); // torso
-    line(this.posX - 10, this.posY + 10, this.posX - 20, this.posY + 20); // Brazo izquierdo
-    line(this.posX + 10, this.posY + 10, this.posX + 20, this.posY + 20); // Brazo derecho
+  mostrar() {
+    fill(255, 0, 0);
+    rect(this.x, this.y, this.tamaño, this.tamaño);
   }
 
-  movderecha() {
-     this.posX += 10;
-  }
-
-  movizquierda() {
-    this.posX -= 10;
-  }
-  
-  teclasMovimiento(keyCode) {
-    if (keyCode == LEFT_ARROW) {
-      this.movizquierda();
-    } else if (keyCode == RIGHT_ARROW) {
-      this.movderecha();
+  mover() {
+    if (keyIsDown(LEFT_ARROW) && this.x > 0) {
+      this.x -= this.velocidad;
+    }
+    if (keyIsDown(RIGHT_ARROW) && this.x < width - this.tamaño) {
+      this.x += this.velocidad;
     }
   }
-  estaVivo() {
-  }
 
-  colision() {
-  }
-
-  recolectar() {
+  teclasMovimiento(keyCode) {
   }
 }
