@@ -1,10 +1,11 @@
 let objJuego;
 let fondo; 
+let sonidoFondo
 
 function preload() {
    fondo = new ImagenesFondo();
    fondo.cargaimagenes();
- // sonidoFondo = loadSound('data/musiquita.mp3');
+   sonidoFondo = loadSound ('data/sonidof.mp3');
 }
 
 function setup() {
@@ -24,4 +25,7 @@ function keyPressed(){
 }
 function mousePressed() {
   objJuego.mouseclic();
+  if (!sonidoFondo.isPlaying()) {
+      sonidoFondo.loop();
+  }
 }

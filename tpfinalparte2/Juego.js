@@ -7,10 +7,12 @@ class Juego {
     this.textos = [];
     this.textos = loadStrings("data/textos.txt");
     //this.linternasRecolectadas = new linternasRecolectadas();
-    
   }
- 
+
   dibujar() {
+    let valorVolumen = map(mouseX, 0, width, 0.1, 1);
+    sonidoFondo.amp(valorVolumen);
+    
     if (this.estado === 0) {
       // Pantalla de inicio
       fondo.dibujar();
@@ -29,7 +31,7 @@ class Juego {
       textSize(16);
       fill(255);
       let y = height / 2 - 130;
-      for (let i = 2; i < this.textos.length -+ 6; i++) {
+      for (let i = 2; i < this.textos.length -11; i++) { //funcion para crear parrfo
         text(this.textos[i], width / 2, y);
         y += 18; // interlineado
       }
@@ -65,6 +67,11 @@ class Juego {
     }
   }
 
+  manejosonido() {
+    if (!sonidoFondo.isPlaying()) {
+      sonidoFondo.loop();
+    }
+  }
   boton(x, y) {
     rect (x, y, 140, 40)
   }
@@ -82,9 +89,11 @@ class Juego {
       if (mouseX > x && mouseX < x+an && mouseY > y && mouseY < y+al) {
         this.estado = 1; // Cambia al estado de juego
         fondo.cambiaimagen();
+        this.manejosonido();
       }
     }
   }
+
 
   crearObstaculos() {
     this.obstaculos = [];
