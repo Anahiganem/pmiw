@@ -1,7 +1,8 @@
+//https://youtu.be/XQVbOLt7DHs
+//Gadea Brisa - Anahi ganem comision 1
 let objJuego;
 let fondo;
 let sonidoFondo;
-let personaje;
 let vidas = 3;
 
   function preload() {
