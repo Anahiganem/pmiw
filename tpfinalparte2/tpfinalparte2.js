@@ -3,7 +3,6 @@
 let objJuego;
 let fondo;
 let sonidoFondo;
-let vidas = 3;
 
   function preload() {
   fondo = new ImagenesFondo();
