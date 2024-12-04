@@ -9,6 +9,7 @@ class Juego {
     this.crearLinternas();
     this.textos = [];
     this.textos = loadStrings("data/textos.txt");
+    this.vidas = 3;
   }
 
   dibujar() {
@@ -50,9 +51,9 @@ for (let i = 0; i < this.obstaculos.length; i++) {
   obstaculo.mostrar();
   obstaculo.mover();
   if (obstaculo.colisionaCon(this.personaje)) {
-    vidas--;
+    this.vidas--;
     obstaculo.resetear();
-    if (vidas <= 0) {
+    if (this.vidas <= 0) {
       this.estado = 4; // Perdiste
     }
   }
@@ -76,7 +77,7 @@ for (let i = 0; i < this.linternas.length; i++) {
 
 
    // Mostrar vidas
-    for (let i = 0; i < vidas; i++) {
+    for (let i = 0; i < this.vidas; i++) {
       fill(255, 0, 0); // Color rojo para representar vidas
       ellipse(30 + i * 20, 30, 15, 15); // Dibujar círculos para vidas
     }
@@ -163,7 +164,7 @@ mouseclic() {
   }
   reiniciarJuego() {
     this.estado = 1;
-    vidas = 3;
+    this.vidas = 3;
     this.linternasRecolectadas = 0;
     this.crearObstaculos();
     this.crearLinternas();
