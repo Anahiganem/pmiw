@@ -1,4 +1,4 @@
-//
+//https://www.youtube.com/watch?v=bMFsoSIrppg
 //Ganem Anahi - Gadea Brisa comision 1
 let objJuego;
 let fondo;
